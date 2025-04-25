@@ -6,11 +6,9 @@ user_input = st.text_area("Enter your text here:")
 
 if st.button("Summarize"):
     try:
-        # Modified to use form-encoded data properly
         response = requests.post(
-            "http://localhost:8000/summarize/",
-            data={"text": user_input},
-            headers={"Content-Type": "application/x-www-form-urlencoded"}
+            "http://localhost:8081/summarize/",  
+            data={"text": user_input}
         )
         response.raise_for_status()  # Raise an exception for bad status codes
         summary = response.json().get("summary", "Error generating summary.")
